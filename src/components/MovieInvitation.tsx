@@ -51,21 +51,36 @@ const SUCCESS_IMAGE = "https://media.giphy.com/media/9Y6n9TR7U07ew/giphy.gif";
 
 // Floating seeds of Eywa
 const Woodsprites = () => {
+  const [sprites, setSprites] = useState<Array<{
+    width: string;
+    height: string;
+    left: string;
+    top: string;
+    animationDuration: string;
+    animationDelay: string;
+    opacity: number;
+  }>>([]);
+
+  useEffect(() => {
+    const newSprites = [...Array(20)].map(() => ({
+      width: Math.random() * 10 + 5 + 'px',
+      height: Math.random() * 10 + 5 + 'px',
+      left: Math.random() * 100 + '%',
+      top: Math.random() * 100 + '%',
+      animationDuration: Math.random() * 10 + 10 + 's',
+      animationDelay: Math.random() * 5 + 's',
+      opacity: Math.random() * 0.5 + 0.3,
+    }));
+    setSprites(newSprites);
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
+      {sprites.map((sprite, i) => (
         <div
           key={i}
           className="absolute bg-white/60 rounded-full blur-[1px] animate-float"
-          style={{
-            width: Math.random() * 10 + 5 + 'px',
-            height: Math.random() * 10 + 5 + 'px',
-            left: Math.random() * 100 + '%',
-            top: Math.random() * 100 + '%',
-            animationDuration: Math.random() * 10 + 10 + 's',
-            animationDelay: Math.random() * 5 + 's',
-            opacity: Math.random() * 0.5 + 0.3,
-          }}
+          style={sprite}
         />
       ))}
       <style jsx>{`
