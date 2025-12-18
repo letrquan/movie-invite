@@ -38,14 +38,14 @@ const YES_TEXTS = [
 
 // Updated with reliable Giphy links
 const IMAGES = [
-  "https://media.giphy.com/media/OPU6pkyJKLS9q/giphy.gif", // Crying Cat
-  "https://media.giphy.com/media/d2lcHJTG5TSCnT0I/giphy.gif", // Crying Dawson
   "https://media.giphy.com/media/26brv0ThflsHCqDrG/giphy.gif", // Sad Pablo Escobar
-  "https://media.giphy.com/media/L95W4wv8nnb9K/giphy.gif", // Crying Stitch
   "https://media.giphy.com/media/Ph8OWoMcQDKKBJ5dZ/giphy.gif", // Sad Pikachu
   "https://media.giphy.com/media/ISOckXUybVfQ4/giphy.gif", // Spongebob Lonely
-  "https://media.giphy.com/media/rbHCZK4CX7i7e/giphy.gif", // Anime Crying
   "https://media.giphy.com/media/10tIjpzIu8fe0/giphy.gif", // Minion Sad
+  "https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif", // The Office Crying
+  "https://media.giphy.com/media/ylpCjsDHRqJzy/giphy.gif", // Sad Cat Window
+  "https://media.giphy.com/media/8YutMatqkTfSE/giphy.gif", // Stitch Rain
+  "https://media.giphy.com/media/4pk6PhpUfTk4w/giphy.gif", // Sailor Moon Crying
 ];
 
 const SUCCESS_IMAGE = "https://media.giphy.com/media/9Y6n9TR7U07ew/giphy.gif"; 
