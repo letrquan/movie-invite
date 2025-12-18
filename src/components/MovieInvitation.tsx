@@ -45,7 +45,7 @@ const IMAGES = [
   "https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif", // The Office Crying
   "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWQxamZjMmtsYXJwYW45NXVjd2ZhZjk5NDF5cHo2dTM3eWphaThndCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iJJ6E58EttmFqgLo96/giphy.gif", // Sad Cat Window
   "https://media.giphy.com/media/8YutMatqkTfSE/giphy.gif", // Stitch Rain
-  "https://media.giphy.com/media/4pk6PhpUfTk4w/giphy.gif", // Sailor Moon Crying
+  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmpmZGtjbHplMTh2ODZvbHVmMjg1cDRvMmZudHEwZXV3cnJwaHV0eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/a9xhxAxaqOfQs/giphy.gif", // Sailor Moon Crying
 ];
 
 const SUCCESS_IMAGE = "https://media.giphy.com/media/9Y6n9TR7U07ew/giphy.gif"; 
