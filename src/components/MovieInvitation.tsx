@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -48,6 +48,12 @@ const IMAGES = [
 ];
 
 const SUCCESS_IMAGE = "https://media.giphy.com/media/9Y6n9TR7U07ew/giphy.gif"; 
+
+const SOUNDS = {
+  hover: "https://www.myinstants.com/media/sounds/vine-boom.mp3",
+  success: "https://www.myinstants.com/media/sounds/kids-cheering.mp3",
+  exile: "https://www.myinstants.com/media/sounds/spongebob-fail.mp3"
+};
 
 // Floating seeds of Eywa
 const Woodsprites = () => {
@@ -106,31 +112,45 @@ const MovieInvitation = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isShaking, setIsShaking] = useState(false);
   const [isExiled, setIsExiled] = useState(false);
+  const [rotation, setRotation] = useState(0);
 
   const yesButtonSize = noCount * 20 + 16;
   const currentImage = yesPressed ? SUCCESS_IMAGE : IMAGES[Math.min(noCount, IMAGES.length - 1)];
   const currentYesText = YES_TEXTS[Math.min(noCount, YES_TEXTS.length - 1)];
   const traitorLevel = Math.min(noCount * 10, 100);
 
+  const playSound = (url: string) => {
+    const audio = new Audio(url);
+    audio.volume = 0.5;
+    audio.play().catch(e => console.log("Audio play failed", e));
+  };
+
   // Check for exile condition
   useEffect(() => {
     if (noCount >= 12) {
       setIsExiled(true);
+      playSound(SOUNDS.exile);
     }
   }, [noCount]);
 
   const handleNoHover = () => {
     const x = Math.random() * (window.innerWidth - 200) - (window.innerWidth / 2 - 100);
     const y = Math.random() * (window.innerHeight - 200) - (window.innerHeight / 2 - 100);
+    const newRotation = Math.random() * 360;
+    
     setPosition({ x, y });
+    setRotation(newRotation);
     setNoCount(prev => prev + 1);
     
+    playSound(SOUNDS.hover);
     setIsShaking(true);
     setTimeout(() => setIsShaking(false), 500);
   };
 
   const handleYesClick = () => {
     setYesPressed(true);
+    playSound(SOUNDS.success);
+    
     confetti({
       particleCount: 150,
       spread: 70,
@@ -195,7 +215,16 @@ const MovieInvitation = () => {
         .cursor-target {
           cursor: crosshair;
         }
+        @keyframes flashbang {
+          0% { background-color: white; opacity: 1; }
+          100% { background-color: transparent; opacity: 0; }
+        }
+        .animate-flashbang {
+          animation: flashbang 1s ease-out forwards;
+        }
       `}</style>
+
+      {yesPressed && <div className="absolute inset-0 z-50 pointer-events-none animate-flashbang"></div>}
 
       <Woodsprites />
 
@@ -282,7 +311,7 @@ const MovieInvitation = () => {
                 <div
                     className="absolute transition-all duration-200 ease-linear z-10"
                     style={{
-                        transform: `translate(${position.x}px, ${position.y}px)`,
+                        transform: `translate(${position.x}px, ${position.y}px) rotate(${rotation}deg)`,
                     }}
                 >
                     <Button
