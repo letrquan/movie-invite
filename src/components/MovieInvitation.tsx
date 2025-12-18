@@ -295,7 +295,7 @@ const MovieInvitation = () => {
                 </div>
                 
                 <h2 className="text-xl font-medium">
-                  Will you go see the new <span className="text-blue-400 font-bold">Avatar</span> movie with me?
+                  Will you go see the new <span className="text-blue-400 font-bold">Avatar</span> movie with Katsuma team?
                 </h2>
                 
                 {noCount > 0 && (
