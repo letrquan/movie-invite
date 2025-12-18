@@ -107,6 +107,7 @@ const Woodsprites = () => {
 };
 
 const MovieInvitation = () => {
+  const [started, setStarted] = useState(false);
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -240,11 +241,25 @@ const MovieInvitation = () => {
       )}>
         <CardHeader>
           <CardTitle className="text-center text-3xl font-extrabold tracking-widest text-blue-200" style={{ fontFamily: 'Papyrus, fantasy' }}>
-            {yesPressed ? "Oel Ngati Kameie" : "A QUEST AWAITS"}
+            {!started ? "INCOMING TRANSMISSION" : (yesPressed ? "Oel Ngati Kameie" : "A QUEST AWAITS")}
           </CardTitle>
         </CardHeader>
         <CardContent className="flex flex-col items-center gap-6">
-          {yesPressed ? (
+          {!started ? (
+            <div className="flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-500 py-8">
+              <div className="text-6xl animate-pulse">📨</div>
+              <p className="text-xl text-center text-blue-100 font-medium">
+                I have a very important question to ask you...
+              </p>
+              <Button 
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-500 text-white shadow-[0_0_15px_rgba(37,99,235,0.5)]"
+                onClick={() => setStarted(true)}
+              >
+                Open Message
+              </Button>
+            </div>
+          ) : yesPressed ? (
             <div className="text-center space-y-4 animate-in fade-in zoom-in duration-500">
               <img 
                 src={SUCCESS_IMAGE} 
@@ -265,7 +280,7 @@ const MovieInvitation = () => {
             </div>
           ) : (
             <>
-              <div className="text-center space-y-2 w-full">
+              <div className="text-center space-y-2 w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="relative">
                     <img 
                     src={currentImage} 
@@ -299,7 +314,7 @@ const MovieInvitation = () => {
                 )}
               </div>
 
-              <div className="flex flex-col items-center w-full gap-4 relative h-40 justify-center">
+              <div className="flex flex-col items-center w-full gap-4 relative h-40 justify-center animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
                 <Button
                   className="bg-blue-600 hover:bg-blue-500 text-white transition-all duration-200 ease-in-out shadow-[0_0_15px_rgba(37,99,235,0.5)] z-20"
                   style={{ fontSize: yesButtonSize, height: 'auto', padding: '0.5em 1em' }}
