@@ -39,7 +39,7 @@ const YES_TEXTS = [
 // Updated with reliable Giphy links
 const IMAGES = [
   "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ0dXE3amduYmQwajM2amdtNjlteThjNGRwNmJsOWxydHphNHZ0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/clsbxjJmxqjVRvg3Wm/giphy.gif", // Sad Pablo Escobar
-  "https://media.giphy.com/media/Ph8OWoMcQDKKBJ5dZ/giphy.gif", // Sad Pikachu
+  "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb20zcnBvNjhna2Q3ZXBzOTcxY2F2bWo4ZnY0OXVhcG4xMHd6ZHR5aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/98MaHVwJOmWMz4cz1K/giphy.gif", // Sad Pikachu
   "https://media.giphy.com/media/ISOckXUybVfQ4/giphy.gif", // Spongebob Lonely
   "https://media.giphy.com/media/10tIjpzIu8fe0/giphy.gif", // Minion Sad
   "https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif", // The Office Crying
