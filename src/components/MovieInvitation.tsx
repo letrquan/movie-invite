@@ -309,9 +309,11 @@ const MovieInvitation = () => {
                 </Button>
 
                 <div
-                    className="absolute transition-all duration-200 ease-linear z-10"
+                    className="fixed z-50 transition-all duration-200 ease-linear"
                     style={{
-                        transform: `translate(${position.x}px, ${position.y}px) rotate(${rotation}deg)`,
+                        left: '50%',
+                        top: '50%',
+                        transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y + (noCount === 0 ? 80 : 0)}px)) rotate(${rotation}deg)`,
                     }}
                 >
                     <Button
