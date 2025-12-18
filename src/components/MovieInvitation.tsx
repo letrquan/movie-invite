@@ -38,7 +38,7 @@ const YES_TEXTS = [
 
 // Updated with reliable Giphy links
 const IMAGES = [
-  "https://media.giphy.com/media/26brv0ThflsHCqDrG/giphy.gif", // Sad Pablo Escobar
+  "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDJ0dXE3amduYmQwajM2amdtNjlteThjNGRwNmJsOWxydHphNHZ0YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/clsbxjJmxqjVRvg3Wm/giphy.gif", // Sad Pablo Escobar
   "https://media.giphy.com/media/Ph8OWoMcQDKKBJ5dZ/giphy.gif", // Sad Pikachu
   "https://media.giphy.com/media/ISOckXUybVfQ4/giphy.gif", // Spongebob Lonely
   "https://media.giphy.com/media/10tIjpzIu8fe0/giphy.gif", // Minion Sad
