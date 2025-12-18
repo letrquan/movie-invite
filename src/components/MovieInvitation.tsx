@@ -36,15 +36,16 @@ const YES_TEXTS = [
   "DO IT NOW",
 ];
 
+// Updated with reliable Giphy links
 const IMAGES = [
-  "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZ0eHR6eW14eHY5aHZ6aHZ6aHZ6aHZ6aHZ6aHZ6aHZ6aHZ6aHZoJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/XxvvhtYWjL3zW/giphy.gif", // Avatar Eyes
   "https://media.giphy.com/media/OPU6pkyJKLS9q/giphy.gif", // Crying Cat
   "https://media.giphy.com/media/d2lcHJTG5TSCnT0I/giphy.gif", // Crying Dawson
-  "https://media.giphy.com/media/11tTNkZy1TP86k/giphy.gif", // Table Flip
-  "https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif", // Crying Office
-  "https://media.giphy.com/media/26ufcVAp3AiJJsrIs/giphy.gif", // Arrested Development Sad
-  "https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif", // Chaos
-  "https://media.giphy.com/media/nrXif9YExO9EI/giphy.gif", // Rage
+  "https://media.giphy.com/media/26brv0ThflsHCqDrG/giphy.gif", // Sad Pablo Escobar
+  "https://media.giphy.com/media/L95W4wv8nnb9K/giphy.gif", // Crying Stitch
+  "https://media.giphy.com/media/Ph8OWoMcQDKKBJ5dZ/giphy.gif", // Sad Pikachu
+  "https://media.giphy.com/media/ISOckXUybVfQ4/giphy.gif", // Spongebob Lonely
+  "https://media.giphy.com/media/rbHCZK4CX7i7e/giphy.gif", // Anime Crying
+  "https://media.giphy.com/media/10tIjpzIu8fe0/giphy.gif", // Minion Sad
 ];
 
 const SUCCESS_IMAGE = "https://media.giphy.com/media/9Y6n9TR7U07ew/giphy.gif"; 
