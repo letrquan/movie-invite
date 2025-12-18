@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,6 +17,8 @@ const PHRASES = [
   "I see you... ignoring me",
   "Seriously?",
   "I'll tell Toruk Makto!",
+  "LAST WARNING!",
+  "YOU ARE TEARING THIS FAMILY APART!",
 ];
 
 const YES_TEXTS = [
@@ -30,6 +32,8 @@ const YES_TEXTS = [
   "CLICK ME OR I CRY",
   "PLEASEEEEEEE",
   "OKAY FINE CLICK ME",
+  "SAVE YOUR SOUL",
+  "DO IT NOW",
 ];
 
 const IMAGES = [
@@ -39,28 +43,73 @@ const IMAGES = [
   "https://media.giphy.com/media/11tTNkZy1TP86k/giphy.gif", // Table Flip
   "https://media.giphy.com/media/l378giAZgxPw3eO52/giphy.gif", // Crying Office
   "https://media.giphy.com/media/26ufcVAp3AiJJsrIs/giphy.gif", // Arrested Development Sad
+  "https://media.giphy.com/media/3o6Zt6KHxJTbXCnSvu/giphy.gif", // Chaos
+  "https://media.giphy.com/media/nrXif9YExO9EI/giphy.gif", // Rage
 ];
 
-const SUCCESS_IMAGE = "https://media.giphy.com/media/9Y6n9TR7U07ew/giphy.gif"; // Flying Banshee or similar cool Avatar gif
+const SUCCESS_IMAGE = "https://media.giphy.com/media/9Y6n9TR7U07ew/giphy.gif"; 
+
+// Floating seeds of Eywa
+const Woodsprites = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(20)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute bg-white/60 rounded-full blur-[1px] animate-float"
+          style={{
+            width: Math.random() * 10 + 5 + 'px',
+            height: Math.random() * 10 + 5 + 'px',
+            left: Math.random() * 100 + '%',
+            top: Math.random() * 100 + '%',
+            animationDuration: Math.random() * 10 + 10 + 's',
+            animationDelay: Math.random() * 5 + 's',
+            opacity: Math.random() * 0.5 + 0.3,
+          }}
+        />
+      ))}
+      <style jsx>{`
+        @keyframes float {
+          0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+          10% { opacity: 0.8; }
+          90% { opacity: 0.8; }
+          100% { transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px) rotate(360deg); opacity: 0; }
+        }
+        .animate-float {
+          animation-name: float;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+      `}</style>
+    </div>
+  );
+};
 
 const MovieInvitation = () => {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isShaking, setIsShaking] = useState(false);
+  const [isExiled, setIsExiled] = useState(false);
 
   const yesButtonSize = noCount * 20 + 16;
   const currentImage = yesPressed ? SUCCESS_IMAGE : IMAGES[Math.min(noCount, IMAGES.length - 1)];
   const currentYesText = YES_TEXTS[Math.min(noCount, YES_TEXTS.length - 1)];
   const traitorLevel = Math.min(noCount * 10, 100);
 
+  // Check for exile condition
+  useEffect(() => {
+    if (noCount >= 12) {
+      setIsExiled(true);
+    }
+  }, [noCount]);
+
   const handleNoHover = () => {
     const x = Math.random() * (window.innerWidth - 200) - (window.innerWidth / 2 - 100);
     const y = Math.random() * (window.innerHeight - 200) - (window.innerHeight / 2 - 100);
     setPosition({ x, y });
-    setNoCount(noCount + 1);
+    setNoCount(prev => prev + 1);
     
-    // Trigger shake
     setIsShaking(true);
     setTimeout(() => setIsShaking(false), 500);
   };
@@ -71,10 +120,9 @@ const MovieInvitation = () => {
       particleCount: 150,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#00BFFF', '#1E90FF', '#0000FF', '#FFD700'] // Avatar blues and gold
+      colors: ['#00BFFF', '#1E90FF', '#0000FF', '#FFD700']
     });
     
-    // Launch a few more bursts
     setTimeout(() => {
         confetti({ particleCount: 100, spread: 60, origin: { x: 0.2 }, colors: ['#00BFFF', '#1E90FF'] });
         confetti({ particleCount: 100, spread: 60, origin: { x: 0.8 }, colors: ['#00BFFF', '#1E90FF'] });
@@ -85,8 +133,32 @@ const MovieInvitation = () => {
     return PHRASES[Math.min(noCount, PHRASES.length - 1)];
   };
 
+  if (isExiled) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-black text-red-600 p-8 text-center animate-in fade-in duration-1000">
+        <h1 className="text-6xl font-bold mb-8 tracking-widest uppercase">Exiled</h1>
+        <img src="https://media.giphy.com/media/8abAbOrQ9rvLG/giphy.gif" alt="Sad walk" className="w-full max-w-md rounded-lg opacity-80 mb-8 grayscale" />
+        <p className="text-2xl mb-8 text-red-400">You have betrayed the clan too many times.</p>
+        <Button 
+          variant="destructive" 
+          size="lg"
+          onClick={() => window.location.reload()}
+          className="animate-pulse"
+        >
+          Beg for Forgiveness (Try Again)
+        </Button>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-teal-800 p-4 text-white overflow-hidden relative">
+    <div 
+      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-teal-800 p-4 text-white overflow-hidden relative transition-all duration-500 ease-in-out"
+      style={{
+        filter: noCount > 0 ? `hue-rotate(${noCount * 5}deg) contrast(${100 + noCount * 2}%)` : 'none',
+        transform: noCount > 5 ? `rotate(${Math.sin(noCount) * 2}deg) scale(${1 + noCount * 0.005})` : 'none',
+      }}
+    >
       <style jsx>{`
         @keyframes shake {
           0% { transform: translate(1px, 1px) rotate(0deg); }
@@ -105,7 +177,12 @@ const MovieInvitation = () => {
           animation: shake 0.5s;
           animation-iteration-count: 1;
         }
+        .cursor-target {
+          cursor: crosshair;
+        }
       `}</style>
+
+      <Woodsprites />
 
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -114,7 +191,7 @@ const MovieInvitation = () => {
       </div>
 
       <Card className={cn(
-        "w-full max-w-md bg-black/40 backdrop-blur-md border-blue-500/30 text-white shadow-2xl z-10 transition-colors duration-300",
+        "w-full max-w-md bg-black/40 backdrop-blur-md border-blue-500/30 text-white shadow-2xl z-10 transition-colors duration-300 cursor-target",
         isShaking && "border-red-500/50 bg-red-900/20 animate-shake"
       )}>
         <CardHeader>
@@ -130,7 +207,7 @@ const MovieInvitation = () => {
                 alt="Success" 
                 className="rounded-lg shadow-lg mb-4 w-full object-cover h-48"
               />
-              <div className="text-6xl mb-4">💙 🍿 🌳</div>
+              <div className="text-6xl mb-4 animate-bounce">💙 🍿 🌳</div>
               <h2 className="text-2xl font-bold text-blue-300">Great Success!</h2>
               <p className="text-lg">I See You... at the movie theater!</p>
               <p className="text-sm opacity-70 italic">Don&apos;t forget your tail.</p>
